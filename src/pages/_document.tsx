@@ -9,8 +9,8 @@ export default class BDocument extends Document {
                     <meta charSet="utf-8"/>
                     <meta name="author" content="Bas Milius"/>
                     <meta name="revisit-after" content="1 day"/>
-                    <meta name="theme-color" content="#d0005d"/>
-                    <link rel="stylesheet" href="https://font.bmcdn.nl/css2?family=proxima-soft:ital"/>
+                    <meta name="theme-color" content="#086e7d"/>
+                    <link rel="stylesheet" href="https://font.bmcdn.nl/css2?family=proxima-soft"/>
                 </Head>
                 <body>
                     <Main/>

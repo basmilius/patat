@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { Fragment, memo, useCallback, useState } from "react";
+import { forwardRef, Fragment, memo, useCallback, useEffect, useState } from "react";
 import { POFButton, POFContainer } from "@/component/shell";
 
 const POFMotionButton = motion(POFButton);
@@ -10,7 +10,7 @@ export default memo(() => {
     const onButtonClick = useCallback(async () => {
         setStage(2);
 
-        await new Promise(resolve => setTimeout(resolve, 3000));
+        await new Promise(resolve => setTimeout(resolve, 8000));
 
         setStage(3);
     }, []);
@@ -60,7 +60,7 @@ export default memo(() => {
                         exit={{opacity: 0}}
                         initial={{opacity: 0, scale: .5}}
                         transition={{type: "tween", duration: .3}}
-                        src="https://bmcdn.nl/assets/joypixels/v6.6/svg/1f914.svg"
+                        src="https://bmcdn.nl/assets/joypixels/v6.6/svg/1f916.svg"
                         alt="Patat of friet"/>
 
                     <motion.h1
@@ -68,17 +68,14 @@ export default memo(() => {
                         exit={{opacity: 0}}
                         initial={{opacity: 0, y: 60}}
                         transition={{type: "tween", duration: .3}}>
-                        Aan het berekenen&hellip;
+                        Aan het nadenken&hellip;
                     </motion.h1>
 
-                    <motion.p
+                    <RunningMessages
                         animate={{opacity: 1, y: 0, transition: {type: "spring", bounce: .5, delay: .25}}}
                         exit={{opacity: 0}}
                         initial={{opacity: 0, y: 60}}
-                        transition={{type: "tween", duration: .3}}>
-                        Op dit moment wordt er gezocht in de volledige menselijke geschiedenis, alle woordenboeken
-                        en in nieuwsberichten van na het jaar 1996.
-                    </motion.p>
+                        transition={{type: "tween", duration: .3}}/>
                 </Fragment>)}
 
                 {stage === 3 && (<Fragment key={3}>
@@ -87,7 +84,7 @@ export default memo(() => {
                         exit={{opacity: 0}}
                         initial={{opacity: 0, scale: .5}}
                         transition={{type: "tween", duration: .3}}
-                        src="https://bmcdn.nl/assets/joypixels/v6.6/svg/1f91f.svg"
+                        src="https://bmcdn.nl/assets/joypixels/v6.6/svg/1f91f-1f3fc.svg"
                         alt="Patat of friet"/>
 
                     <motion.h1
@@ -103,10 +100,43 @@ export default memo(() => {
                         exit={{opacity: 0}}
                         initial={{opacity: 0, y: 60}}
                         transition={{type: "tween", duration: .3}}>
-                        En dat is het altijd al geweest.
+                        Na een paar grote berekeningen heeft de AI heeft het enige juiste antwoord kunnen vinden. Het is patat en dat is het altijd al geweest.
                     </motion.p>
                 </Fragment>)}
             </AnimatePresence>
         </POFContainer>
     );
 });
+
+const messages = [
+    "De volledige menselijke geschiedenis doorzoeken...",
+    "Blackbox vullen met Aviko...",
+    "Nieuwsberichten doorzoeken...",
+    "Oud frituurvet controleren..."
+];
+
+const RunningMessages = motion(memo(forwardRef<HTMLDivElement>(({}, ref) => {
+    const [index, setIndex] = useState(0);
+
+    useEffect(() => {
+        const tick = () => requestAnimationFrame(() => setIndex(index + 1 >= messages.length ? 0 : index + 1));
+        const timeout = setTimeout(tick, 2000);
+
+        return () => clearTimeout(timeout);
+    }, [index]);
+
+    return (
+        <div ref={ref}>
+            <AnimatePresence exitBeforeEnter initial={false}>
+                <motion.p
+                    key={index}
+                    animate={{opacity: 1, x: 0, transition: {type: "spring", bounce: .5}}}
+                    exit={{opacity: 0, x: -60}}
+                    initial={{opacity: 0, x: 60}}
+                    transition={{type: "tween", duration: .3}}>
+                    {messages[index]}
+                </motion.p>
+            </AnimatePresence>
+        </div>
+    );
+})));

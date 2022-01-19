@@ -7,7 +7,7 @@
     padding-right: #{gutter-get(8)};
     align-items: center;
     gap: #{gutter-get(5)};
-    background: var(--button);
+    background: transparent;
     border: 3px solid var(--button);
     border-radius: 99px;
     color: var(--text);
@@ -16,7 +16,7 @@
     outline: 0;
 
     &:hover {
-        background: transparent;
+        background: var(--button);
     }
 }
 
