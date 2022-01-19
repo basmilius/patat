@@ -98,7 +98,7 @@ export default memo(() => {
                         exit={{opacity: 0}}
                         initial={{opacity: 0, y: 60}}
                         transition={{type: "tween", duration: .3}}>
-                        Het is Patat.
+                        Het is Friet.
                     </motion.h1>
 
                     <motion.p
@@ -106,7 +106,7 @@ export default memo(() => {
                         exit={{opacity: 0}}
                         initial={{opacity: 0, y: 60}}
                         transition={{type: "tween", duration: .3}}>
-                        Na een paar grote berekeningen heeft de AI heeft het enige juiste antwoord kunnen vinden. Het is patat en dat is het altijd al geweest.
+                        Na een paar grote berekeningen heeft de AI heeft het enige juiste antwoord kunnen vinden. Het is friet en dat is het altijd al geweest.
                     </motion.p>
                 </Fragment>)}
             </AnimatePresence>
