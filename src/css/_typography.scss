@@ -30,6 +30,7 @@ a {
 
 img {
     height: 120px;
+    width: 120px;
 }
 
 @include responsive-down(sm) {
@@ -43,5 +44,6 @@ img {
 
     img {
         height: 90px;
+        width: 90px;
     }
 }

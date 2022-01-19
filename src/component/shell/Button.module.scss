@@ -2,18 +2,21 @@
 
 .button {
     display: flex;
-    height: 72px;
-    padding-left: #{gutter-get(8)};
-    padding-right: #{gutter-get(8)};
+    height: 66px;
+    padding-left: #{gutter-get(7)};
+    padding-right: #{gutter-get(7)};
     align-items: center;
     gap: #{gutter-get(5)};
     background: transparent;
     border: 3px solid var(--button);
     border-radius: 99px;
     color: var(--text);
-    font-size: 21px;
-    font-weight: 500;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 2px;
     outline: 0;
+    text-transform: uppercase;
+    transition: background 180ms var(--swiftOut);
 
     &:hover {
         background: var(--button);
@@ -21,5 +24,26 @@
 }
 
 .buttonIcon {
+    height: 1em;
+    width: 1em;
     font-size: 24px;
+
+    &:first-child {
+        margin-left: -#{gutter-get(2)};
+    }
+
+    &:last-child {
+        margin-right: -#{gutter-get(2)};
+    }
+}
+
+@include responsive-down(md) {
+    .button {
+        height: 60px;
+        font-size: 16px;
+    }
+
+    .buttonIcon {
+        font-size: 20px;
+    }
 }
