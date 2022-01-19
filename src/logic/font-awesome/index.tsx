@@ -1,18 +1,12 @@
 import type { IconDefinition, IconLookup, IconName, IconPrefix } from "@fortawesome/fontawesome-svg-core";
 import { ForwardedRef, ReactElement } from "react";
-import * as brandsIcons from "./brands";
 import * as solidIcons from "./solid";
 
 const REGISTRY: { [key: string]: { [key: string]: IconDefinition; }; } = {
-    fab: {},
     fas: {}
 };
 
 export function initializeFontAwesome() {
-    Object.keys(brandsIcons)
-        .map(i => brandsIcons[i])
-        .forEach((i: IconDefinition) => REGISTRY[i.prefix][i.iconName] = i);
-
     Object.keys(solidIcons)
         .map(i => solidIcons[i])
         .forEach((i: IconDefinition) => REGISTRY[i.prefix][i.iconName] = i);
