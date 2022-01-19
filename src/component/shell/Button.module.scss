@@ -2,7 +2,7 @@
 
 .button {
     display: flex;
-    height: 66px;
+    height: 63px;
     padding-left: #{gutter-get(7)};
     padding-right: #{gutter-get(7)};
     align-items: center;
@@ -26,7 +26,7 @@
 .buttonIcon {
     height: 1em;
     width: 1em;
-    font-size: 24px;
+    font-size: 23px;
 
     &:first-child {
         margin-left: -#{gutter-get(2)};
