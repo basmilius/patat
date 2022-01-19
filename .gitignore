@@ -1,0 +1,17 @@
+.idea/
+dist/
+node_modules/
+
+.DS_Store
+.yarn/cache/
+Thumbs.db
+
+.next/
+out/
+
+**/public/precache.*.js
+**/public/sw.js
+**/public/workbox-*.js
+
+.vercel
+.env.local

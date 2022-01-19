@@ -1,0 +1,36 @@
+@use "@latte-ui/css/src/colors";
+
+@forward "@latte-ui/css/src/api" with (
+	$font-family: proxima-soft,
+	$radius: 0,
+	$gutters: (
+        0: 0,
+        1px: 1px,
+        1\/2: 3px,
+        1: 6px,
+        2: 9px,
+        3: 12px,
+        4: 15px,
+        5: 18px,
+        6: 24px,
+        7: 30px,
+        8: 36px,
+        9: 48px,
+        10: 60px,
+        11: 90px,
+        12: 120px
+    ),
+    $breakpoints: (
+        xs: 0,
+        sm: 576px,
+        md: 768px,
+        lg: 992px,
+        xl: 1200px
+    ),
+    $container-widths: (
+        sm: 540px,
+        md: 720px,
+        lg: 960px,
+        xl: 1140px
+    )
+);

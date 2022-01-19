@@ -1,0 +1,25 @@
+@use "../../css/api" as *;
+
+.button {
+    display: flex;
+    height: 72px;
+    padding-left: #{gutter-get(8)};
+    padding-right: #{gutter-get(8)};
+    align-items: center;
+    gap: #{gutter-get(5)};
+    background: var(--button);
+    border: 3px solid var(--button);
+    border-radius: 99px;
+    color: var(--text);
+    font-size: 21px;
+    font-weight: 500;
+    outline: 0;
+
+    &:hover {
+        background: transparent;
+    }
+}
+
+.buttonIcon {
+    font-size: 24px;
+}

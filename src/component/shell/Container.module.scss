@@ -1,0 +1,13 @@
+@use "../../css/api" as *;
+
+.container {
+    position: relative;
+    display: flex;
+    padding: #{gutter-get(8)};
+    height: 100vh;
+    width: 100vw;
+    align-items: center;
+    flex-flow: column;
+    gap: #{gutter-get(8)};
+    justify-content: center;
+}
