@@ -8,6 +8,12 @@
     width: 100vw;
     align-items: center;
     flex-flow: column;
-    gap: #{gutter-get(8)};
+    gap: #{gutter-get(7)};
     justify-content: center;
+
+    img:first-child {
+        position: relative;
+        display: block;
+        margin-top: calc(0px - (120px + #{gutter-get(7)}));
+    }
 }
