@@ -27,3 +27,21 @@ a {
         text-decoration-color: var(--text-prominent);
     }
 }
+
+img {
+    height: 120px;
+}
+
+@include responsive-down(sm) {
+    h1 {
+        font-size: 42px;
+    }
+
+    p {
+        font-size: 18px;
+    }
+
+    img {
+        height: 90px;
+    }
+}

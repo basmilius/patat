@@ -25,8 +25,7 @@ export default memo(() => {
                         initial={{opacity: 0, scale: .5}}
                         transition={{type: "tween", duration: .3}}
                         src="https://bmcdn.nl/assets/joypixels/v6.6/svg/1f35f.svg"
-                        alt="Patat of friet"
-                        height={120}/>
+                        alt="Patat of friet"/>
 
                     <motion.h1
                         animate={{opacity: 1, y: 0, transition: {type: "spring", bounce: .5, delay: .20}}}
@@ -41,7 +40,7 @@ export default memo(() => {
                         exit={{opacity: 0}}
                         initial={{opacity: 0, y: 60}}
                         transition={{type: "tween", duration: .3}}>
-                        Deze website kan doormiddel van <a>Artificial Intelligence</a> uitzoeken wat het antwoord
+                        Deze website kan doormiddel van <a href="https://nl.wikipedia.org/wiki/Kunstmatige_intelligentie" rel="noopener" target="_blank">Artificial Intelligence</a> uitzoeken wat het antwoord
                         op de meest brandende vraag in Nederland is.
                     </motion.p>
 
@@ -62,8 +61,7 @@ export default memo(() => {
                         initial={{opacity: 0, scale: .5}}
                         transition={{type: "tween", duration: .3}}
                         src="https://bmcdn.nl/assets/joypixels/v6.6/svg/1f914.svg"
-                        alt="Patat of friet"
-                        height={120}/>
+                        alt="Patat of friet"/>
 
                     <motion.h1
                         animate={{opacity: 1, y: 0, transition: {type: "spring", bounce: .5, delay: .20}}}
@@ -90,8 +88,7 @@ export default memo(() => {
                         initial={{opacity: 0, scale: .5}}
                         transition={{type: "tween", duration: .3}}
                         src="https://bmcdn.nl/assets/joypixels/v6.6/svg/1f91f.svg"
-                        alt="Patat of friet"
-                        height={120}/>
+                        alt="Patat of friet"/>
 
                     <motion.h1
                         animate={{opacity: 1, y: 0, transition: {type: "spring", bounce: .5, delay: .20}}}
