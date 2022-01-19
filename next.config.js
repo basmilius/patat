@@ -30,7 +30,7 @@ module.exports = () => ({
 
     experimental: {
         cpus: 4,
-        esmExternals: true,
+        esmExternals: false,
         swcLoader: true,
         workerThreads: true
     },
