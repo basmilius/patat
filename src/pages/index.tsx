@@ -1,8 +1,101 @@
-import { AnimatePresence, motion } from "framer-motion";
-import { forwardRef, Fragment, memo, useCallback, useEffect, useState } from "react";
+import { AnimatePresence as _AnimatePresence, AnimatePresenceProps, motion } from "framer-motion";
+import { FC, forwardRef, memo, PropsWithChildren, useCallback, useEffect, useState } from "react";
 import { POFButton, POFContainer } from "@/component/shell";
 
+const AnimatePresence = _AnimatePresence as FC<PropsWithChildren<AnimatePresenceProps>>;
 const POFMotionButton = motion(POFButton);
+
+const StageOne = memo(({onButtonClick}: { onButtonClick: Function; }) => (<>
+    <motion.img
+        animate={{opacity: 1, scale: 1, transition: {type: "spring", bounce: .5, delay: .30}}}
+        exit={{opacity: 0}}
+        initial={{opacity: 0, scale: .5}}
+        transition={{type: "tween", duration: .3}}
+        src="https://bmcdn.nl/assets/joypixels/v6.6/svg/1f35f.svg"
+        alt="Patat of friet"
+        height={90}
+        width={90}/>
+
+    <motion.h1
+        animate={{opacity: 1, y: 0, transition: {type: "spring", bounce: .5, delay: .20}}}
+        exit={{opacity: 0}}
+        initial={{opacity: 0, y: 60}}
+        transition={{type: "tween", duration: .3}}>
+        Is het nou patat of friet?
+    </motion.h1>
+
+    <motion.p
+        animate={{opacity: 1, y: 0, transition: {type: "spring", bounce: .5, delay: .25}}}
+        exit={{opacity: 0}}
+        initial={{opacity: 0, y: 60}}
+        transition={{type: "tween", duration: .3}}>
+        Deze website kan doormiddel van <a href="https://nl.wikipedia.org/wiki/Kunstmatige_intelligentie" rel="noopener" target="_blank">Artificial Intelligence</a> uitzoeken wat het antwoord
+        op de meest brandende vraag in Nederland is.
+    </motion.p>
+
+    <POFMotionButton
+        animate={{opacity: 1, scale: 1, transition: {type: "spring", bounce: .5, delay: .40}}}
+        exit={{opacity: 0}}
+        initial={{opacity: 0, scale: .5}}
+        transition={{type: "tween", duration: .3}}
+        iconAfter="fas circle-right"
+        label="Kom erachter"
+        onClick={() => onButtonClick()}/>
+</>));
+
+const StageTwo = memo(() => (<>
+    <motion.img
+        animate={{opacity: 1, scale: 1, transition: {type: "spring", bounce: .5, delay: .30}}}
+        exit={{opacity: 0}}
+        initial={{opacity: 0, scale: .5}}
+        transition={{type: "tween", duration: .3}}
+        src="https://bmcdn.nl/assets/joypixels/v6.6/svg/1f916.svg"
+        alt="Robot"
+        height={90}
+        width={90}/>
+
+    <motion.h1
+        animate={{opacity: 1, y: 0, transition: {type: "spring", bounce: .5, delay: .20}}}
+        exit={{opacity: 0}}
+        initial={{opacity: 0, y: 60}}
+        transition={{type: "tween", duration: .3}}>
+        Aan het nadenken&hellip;
+    </motion.h1>
+
+    <RunningMessages
+        animate={{opacity: 1, y: 0, transition: {type: "spring", bounce: .5, delay: .25}}}
+        exit={{opacity: 0}}
+        initial={{opacity: 0, y: 60}}
+        transition={{type: "tween", duration: .3}}/>
+</>));
+
+const StageThree = memo(() => (<>
+    <motion.img
+        animate={{opacity: 1, scale: 1, transition: {type: "spring", bounce: .5, delay: .30}}}
+        exit={{opacity: 0}}
+        initial={{opacity: 0, scale: .5}}
+        transition={{type: "tween", duration: .3}}
+        src="https://bmcdn.nl/assets/joypixels/v6.6/svg/1f91f-1f3fc.svg"
+        alt="Hand"
+        height={90}
+        width={90}/>
+
+    <motion.h1
+        animate={{opacity: 1, y: 0, transition: {type: "spring", bounce: .5, delay: .20}}}
+        exit={{opacity: 0}}
+        initial={{opacity: 0, y: 60}}
+        transition={{type: "tween", duration: .3}}>
+        Het is Patat.
+    </motion.h1>
+
+    <motion.p
+        animate={{opacity: 1, y: 0, transition: {type: "spring", bounce: .5, delay: .25}}}
+        exit={{opacity: 0}}
+        initial={{opacity: 0, y: 60}}
+        transition={{type: "tween", duration: .3}}>
+        Na een paar grote berekeningen heeft de AI heeft het enige juiste antwoord kunnen vinden. Het is patat en dat is het altijd al geweest.
+    </motion.p>
+</>));
 
 export default memo(() => {
     const [stage, setStage] = useState(1);
@@ -17,98 +110,20 @@ export default memo(() => {
 
     return (
         <POFContainer>
-            <AnimatePresence exitBeforeEnter initial>
-                {stage === 1 && (<Fragment key={1}>
-                    <motion.img
-                        animate={{opacity: 1, scale: 1, transition: {type: "spring", bounce: .5, delay: .30}}}
-                        exit={{opacity: 0}}
-                        initial={{opacity: 0, scale: .5}}
-                        transition={{type: "tween", duration: .3}}
-                        src="https://bmcdn.nl/assets/joypixels/v6.6/svg/1f35f.svg"
-                        alt="Patat of friet"
-                        height={90}
-                        width={90}/>
+            <AnimatePresence exitBeforeEnter initial={false}>
+                {stage === 1 && (
+                    <StageOne
+                        key={1}
+                        onButtonClick={onButtonClick}/>
+                )}
 
-                    <motion.h1
-                        animate={{opacity: 1, y: 0, transition: {type: "spring", bounce: .5, delay: .20}}}
-                        exit={{opacity: 0}}
-                        initial={{opacity: 0, y: 60}}
-                        transition={{type: "tween", duration: .3}}>
-                        Is het nou patat of friet?
-                    </motion.h1>
+                {stage === 2 && (
+                    <StageTwo key={2}/>
+                )}
 
-                    <motion.p
-                        animate={{opacity: 1, y: 0, transition: {type: "spring", bounce: .5, delay: .25}}}
-                        exit={{opacity: 0}}
-                        initial={{opacity: 0, y: 60}}
-                        transition={{type: "tween", duration: .3}}>
-                        Deze website kan doormiddel van <a href="https://nl.wikipedia.org/wiki/Kunstmatige_intelligentie" rel="noopener" target="_blank">Artificial Intelligence</a> uitzoeken wat het antwoord
-                        op de meest brandende vraag in Nederland is.
-                    </motion.p>
-
-                    <POFMotionButton
-                        animate={{opacity: 1, scale: 1, transition: {type: "spring", bounce: .5, delay: .40}}}
-                        exit={{opacity: 0}}
-                        initial={{opacity: 0, scale: .5}}
-                        transition={{type: "tween", duration: .3}}
-                        iconAfter="fas circle-right"
-                        label="Kom erachter"
-                        onClick={() => onButtonClick()}/>
-                </Fragment>)}
-
-                {stage === 2 && (<Fragment key={2}>
-                    <motion.img
-                        animate={{opacity: 1, scale: 1, transition: {type: "spring", bounce: .5, delay: .30}}}
-                        exit={{opacity: 0}}
-                        initial={{opacity: 0, scale: .5}}
-                        transition={{type: "tween", duration: .3}}
-                        src="https://bmcdn.nl/assets/joypixels/v6.6/svg/1f916.svg"
-                        alt="Robot"
-                        height={90}
-                        width={90}/>
-
-                    <motion.h1
-                        animate={{opacity: 1, y: 0, transition: {type: "spring", bounce: .5, delay: .20}}}
-                        exit={{opacity: 0}}
-                        initial={{opacity: 0, y: 60}}
-                        transition={{type: "tween", duration: .3}}>
-                        Aan het nadenken&hellip;
-                    </motion.h1>
-
-                    <RunningMessages
-                        animate={{opacity: 1, y: 0, transition: {type: "spring", bounce: .5, delay: .25}}}
-                        exit={{opacity: 0}}
-                        initial={{opacity: 0, y: 60}}
-                        transition={{type: "tween", duration: .3}}/>
-                </Fragment>)}
-
-                {stage === 3 && (<Fragment key={3}>
-                    <motion.img
-                        animate={{opacity: 1, scale: 1, transition: {type: "spring", bounce: .5, delay: .30}}}
-                        exit={{opacity: 0}}
-                        initial={{opacity: 0, scale: .5}}
-                        transition={{type: "tween", duration: .3}}
-                        src="https://bmcdn.nl/assets/joypixels/v6.6/svg/1f91f-1f3fc.svg"
-                        alt="Hand"
-                        height={90}
-                        width={90}/>
-
-                    <motion.h1
-                        animate={{opacity: 1, y: 0, transition: {type: "spring", bounce: .5, delay: .20}}}
-                        exit={{opacity: 0}}
-                        initial={{opacity: 0, y: 60}}
-                        transition={{type: "tween", duration: .3}}>
-                        Het is Patat.
-                    </motion.h1>
-
-                    <motion.p
-                        animate={{opacity: 1, y: 0, transition: {type: "spring", bounce: .5, delay: .25}}}
-                        exit={{opacity: 0}}
-                        initial={{opacity: 0, y: 60}}
-                        transition={{type: "tween", duration: .3}}>
-                        Na een paar grote berekeningen heeft de AI heeft het enige juiste antwoord kunnen vinden. Het is patat en dat is het altijd al geweest.
-                    </motion.p>
-                </Fragment>)}
+                {stage === 3 && (
+                    <StageThree key={3}/>
+                )}
             </AnimatePresence>
         </POFContainer>
     );

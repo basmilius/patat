@@ -36,7 +36,7 @@ module.exports = () => ({
     },
 
     webpack: (config) => {
-        config.module.rules[2].oneOf.forEach(moduleLoader => {
+        config.module.rules[3].oneOf.forEach(moduleLoader => {
             Array.isArray(moduleLoader.use) && moduleLoader.use.forEach(l => {
                 if (!l.loader) {
                     return;
