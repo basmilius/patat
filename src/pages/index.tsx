@@ -93,7 +93,7 @@ const StageThree = memo(() => (<>
         exit={{opacity: 0}}
         initial={{opacity: 0, y: 60}}
         transition={{type: "tween", duration: .3}}>
-        Na een paar grote berekeningen heeft de AI heeft het enige juiste antwoord kunnen vinden. Het is patat en dat is het altijd al geweest.
+        Na een paar grote berekeningen heeft de AI het enige juiste antwoord kunnen vinden. Het is patat en dat is het altijd al geweest.
     </motion.p>
 </>));
 
