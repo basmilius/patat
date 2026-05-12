@@ -1,0 +1,41 @@
+name: 🚀 Release
+
+on:
+    release:
+        types: [ released ]
+
+env:
+    RELEASE_VERSION: ${{ github.event.release.tag_name }}
+
+jobs:
+    publish:
+        name: 🚀 Build and release
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+            deployments: write
+        steps:
+            -   name: 👀 Checkout
+                uses: actions/checkout@v6
+
+            -   name: ⚙️ Setup Bun
+                uses: oven-sh/setup-bun@v2
+
+            -   name: 📦️ Install dependencies
+                run: bun install --frozen-lockfile
+
+            -   name: ✏️ Tag v${{ env.RELEASE_VERSION }}
+                run: |
+                    sed -i 's/0.0.0/${{ env.RELEASE_VERSION }}/g' package.json
+
+            -   name: 🔨 Build Patat
+                run: bun run build
+
+            -   name: 🚀 Deploy v${{ env.RELEASE_VERSION }}
+                id: deploy
+                uses: cloudflare/wrangler-action@v3
+                with:
+                    accountId: 5e565cf9fa55b0eae1f8131903da2ca9
+                    apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+                    gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+                    wranglerVersion: "4.90.1"

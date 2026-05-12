@@ -3,7 +3,8 @@
     "description": "Source code for ishetpatat.nl and ishetfriet.nl",
     "license": "UNLICENSED",
     "private": true,
-    "version": "1.0.0-dev",
+    "type": "module",
+    "version": "0.0.0",
     "author": {
         "email": "bas@mili.us",
         "name": "Bas Milius",
@@ -14,38 +15,25 @@
         "url": "https://github.com/basmilius/patat.git"
     },
     "scripts": {
-        "dev": "next dev -p 8080",
-        "build": "next build",
-        "export": "next export",
-        "start": "next start -p 8080"
+        "dev": "vite",
+        "build": "vue-tsc --noEmit && vite build",
+        "build:og": "bun run scripts/generate-og.ts",
+        "preview": "wrangler dev",
+        "deploy": "bun run build && wrangler deploy",
+        "typecheck": "vue-tsc --noEmit"
     },
-    "browserslist": [
-        ">0.3%",
-        "not ie 11",
-        "not dead",
-        "not op_mini all"
-    ],
     "dependencies": {
-        "@babel/core": "7.17.9",
-        "@fortawesome/fontawesome-svg-core": "6.1.1",
-        "@fortawesome/free-solid-svg-icons": "6.1.1",
-        "@latte-ui/core": "2.0.0-dev.28",
-        "@latte-ui/css": "2.0.0-dev.28",
-        "@latte-ui/hooks": "2.0.0-dev.28",
-        "@latte-ui/slot-fill": "2.0.0-dev.28",
-        "deepmerge": "4.2.2",
-        "framer-motion": "6.2.9",
-        "next": "12.1.5-canary.4",
-        "react": "18.0.0",
-        "react-dom": "18.0.0",
-        "tslib": "2.3.1"
+        "lucide-vue-next": "^0.460.0",
+        "motion-v": "^0.11.0",
+        "vue": "^3.5.13"
     },
     "devDependencies": {
-        "@types/node": "17.0.23",
-        "@types/react": "18.0.1",
-        "@types/react-dom": "18.0.0",
-        "css-class-generator": "2.0.0",
-        "sass": "1.50.0",
-        "typescript": "4.6.3"
+        "@resvg/resvg-js": "^2.6.2",
+        "@types/bun": "^1.1.14",
+        "@vitejs/plugin-vue": "^5.2.1",
+        "typescript": "^5.7.2",
+        "vite": "^6.0.3",
+        "vue-tsc": "^2.1.10",
+        "wrangler": "^4.90.1"
     }
 }

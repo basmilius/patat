@@ -6,12 +6,7 @@ node_modules/
 .yarn/cache/
 Thumbs.db
 
-.next/
-out/
+.wrangler/
+.dev.vars
 
-**/public/precache.*.js
-**/public/sw.js
-**/public/workbox-*.js
-
-.vercel
 .env.local
