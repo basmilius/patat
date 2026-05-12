@@ -11,7 +11,7 @@
 .container {
     position: relative;
     display: flex;
-    padding: 36px;
+    padding: 36px 36px 80px;
     height: 100dvh;
     width: 100vw;
     align-items: center;

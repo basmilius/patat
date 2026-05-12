@@ -4,10 +4,26 @@ import { Motion } from "motion-v";
 import { RotateCcw, Share2 } from "lucide-vue-next";
 import Button from "./Button.vue";
 import EmojiShower from "./EmojiShower.vue";
+import Stamp from "./Stamp.vue";
 
 defineEmits<{
     reset: [];
 }>();
+
+const answers = [
+    "Het is Patat.",
+    "Hartstikke patat.",
+    "Pure patat.",
+    "Officieel patat.",
+    "100% patat.",
+    "Patat, en niets anders.",
+    "Het was, is en blijft patat.",
+    "Onbetwist patat.",
+    "Gewoon, patat.",
+    "Onmiskenbaar patat."
+];
+
+const answer = answers[Math.floor(Math.random() * answers.length)];
 
 const canShare = ref(false);
 
@@ -54,12 +70,17 @@ const onShareClick = async () => {
         :exit="{ opacity: 0 }"
         :transition="{ duration: 0.3 }">
         <EmojiShower/>
+        <Stamp/>
 
         <Motion
             as="img"
-            :initial="{ opacity: 0, scale: 0.5 }"
-            :animate="{ opacity: 1, scale: 1, transition: { type: 'spring', bounce: 0.5, delay: 0.30 } }"
-            :transition="{ type: 'tween', duration: 0.3 }"
+            :initial="{ opacity: 0, scale: 0.5, rotate: 0 }"
+            :animate="{ opacity: 1, scale: 1, rotate: [-4, 8, -4] }"
+            :transition="{
+                opacity: { duration: 0.3 },
+                scale: { type: 'spring', bounce: 0.5, delay: 0.30 },
+                rotate: { duration: 2.5, repeat: Infinity, ease: 'easeInOut', delay: 0.7 }
+            }"
             src="https://bmcdn.nl/assets/joypixels/v7.0/svg/1f91f-1f3fc.svg"
             alt="Hand"
             height="90"
@@ -67,10 +88,11 @@ const onShareClick = async () => {
 
         <Motion
             as="h1"
+            class="answer"
             :initial="{ opacity: 0, y: 60 }"
             :animate="{ opacity: 1, y: 0, transition: { type: 'spring', bounce: 0.5, delay: 0.20 } }"
             :transition="{ type: 'tween', duration: 0.3 }">
-            Het is Patat.
+            {{ answer }}
         </Motion>
 
         <Motion

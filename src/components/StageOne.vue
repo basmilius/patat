@@ -18,13 +18,21 @@ defineEmits<{
         :transition="{ duration: 0.3 }">
         <Motion
             as="img"
-            :initial="{ opacity: 0, scale: 0.5 }"
-            :animate="{ opacity: 1, scale: 1, transition: { type: 'spring', bounce: 0.5, delay: 0.30 } }"
-            :transition="{ type: 'tween', duration: 0.3 }"
+            class="patat-trigger"
+            :initial="{ opacity: 0, scale: 0.5, rotate: 0 }"
+            :animate="{ opacity: 1, scale: 1, rotate: [-3, 3, -3] }"
+            :while-hover="{ scale: 1.1 }"
+            :while-tap="{ scale: 0.9, rotate: 12 }"
+            :transition="{
+                opacity: { duration: 0.3 },
+                scale: { type: 'spring', bounce: 0.5, delay: 0.30 },
+                rotate: { duration: 4, repeat: Infinity, ease: 'easeInOut', delay: 0.8 }
+            }"
             src="https://bmcdn.nl/assets/joypixels/v7.0/svg/1f35f.svg"
             alt="Patat of friet"
             height="90"
-            width="90"/>
+            width="90"
+            @click="$emit('click')"/>
 
         <Motion
             as="h1"
@@ -55,3 +63,10 @@ defineEmits<{
         </Motion>
     </Motion>
 </template>
+
+<style scoped>
+.patat-trigger {
+    cursor: pointer;
+    user-select: none;
+}
+</style>

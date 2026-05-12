@@ -31,6 +31,14 @@ const shuffle = <T,>(arr: T[]): T[] => {
 const messages = shuffle(messagePool);
 const index = ref(0);
 
+const thinkingEmojis = [
+    { src: "1f916", alt: "Robot" },
+    { src: "1f9e0", alt: "Brein" },
+    { src: "1f914", alt: "Nadenkend gezicht" },
+    { src: "1f9d0", alt: "Monocle" }
+];
+const thinkingEmoji = thinkingEmojis[Math.floor(Math.random() * thinkingEmojis.length)];
+
 const interval = window.setInterval(() => {
     index.value = (index.value + 1) % messages.length;
 }, 2000);
@@ -50,11 +58,15 @@ onBeforeUnmount(() => {
         :transition="{ duration: 0.3 }">
         <Motion
             as="img"
-            :initial="{ opacity: 0, scale: 0.5 }"
-            :animate="{ opacity: 1, scale: 1, transition: { type: 'spring', bounce: 0.5, delay: 0.30 } }"
-            :transition="{ type: 'tween', duration: 0.3 }"
-            src="https://bmcdn.nl/assets/joypixels/v7.0/svg/1f916.svg"
-            alt="Robot"
+            :initial="{ opacity: 0, scale: 0.5, rotate: 0 }"
+            :animate="{ opacity: 1, scale: 1, rotate: [-6, 6, -6] }"
+            :transition="{
+                opacity: { duration: 0.3 },
+                scale: { type: 'spring', bounce: 0.5, delay: 0.30 },
+                rotate: { duration: 1.4, repeat: Infinity, ease: 'easeInOut', delay: 0.6 }
+            }"
+            :src="`https://bmcdn.nl/assets/joypixels/v7.0/svg/${thinkingEmoji.src}.svg`"
+            :alt="thinkingEmoji.alt"
             height="90"
             width="90"/>
 
