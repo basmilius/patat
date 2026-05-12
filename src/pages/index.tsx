@@ -11,7 +11,7 @@ const StageOne = memo(({onButtonClick}: { onButtonClick: Function; }) => (<>
         exit={{opacity: 0}}
         initial={{opacity: 0, scale: .5}}
         transition={{type: "tween", duration: .3}}
-        src="https://bmcdn.nl/assets/joypixels/v6.6/svg/1f35f.svg"
+        src="https://bmcdn.nl/assets/joypixels/v7.0/svg/1f35f.svg"
         alt="Patat of friet"
         height={90}
         width={90}/>
@@ -49,7 +49,7 @@ const StageTwo = memo(() => (<>
         exit={{opacity: 0}}
         initial={{opacity: 0, scale: .5}}
         transition={{type: "tween", duration: .3}}
-        src="https://bmcdn.nl/assets/joypixels/v6.6/svg/1f916.svg"
+        src="https://bmcdn.nl/assets/joypixels/v7.0/svg/1f916.svg"
         alt="Robot"
         height={90}
         width={90}/>
@@ -75,7 +75,7 @@ const StageThree = memo(() => (<>
         exit={{opacity: 0}}
         initial={{opacity: 0, scale: .5}}
         transition={{type: "tween", duration: .3}}
-        src="https://bmcdn.nl/assets/joypixels/v6.6/svg/1f91f-1f3fc.svg"
+        src="https://bmcdn.nl/assets/joypixels/v7.0/svg/1f91f-1f3fc.svg"
         alt="Hand"
         height={90}
         width={90}/>
