@@ -1,12 +1,14 @@
 .idea/
-dist/
 node_modules/
 
 .DS_Store
 .yarn/cache/
 Thumbs.db
 
+.nuxt/
+.output/
 .wrangler/
 .dev.vars
 
+.env
 .env.local

@@ -70,9 +70,9 @@ defineProps<{
 
 @media (max-width: 767.98px) {
     .button {
-        height: 58px;
-        padding: 0 24px;
-        font-size: 15px;
+        height: 60px;
+        padding: 0 26px;
+        font-size: 16px;
         box-shadow: 4px 5px 0 #3a1a05;
     }
 

@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { computed } from "vue";
-
 const props = withDefaults(defineProps<{
     count?: number;
     emojis?: string[];
@@ -24,7 +22,7 @@ const random = (min: number, max: number) => Math.random() * (max - min) + min;
 
 const particles = computed<Particle[]>(() =>
     Array.from({ length: props.count }, () => ({
-        char: props.emojis[Math.floor(Math.random() * props.emojis.length)],
+        char: props.emojis[Math.floor(Math.random() * props.emojis.length)]!,
         left: random(0, 100),
         delay: random(0, 2.5),
         duration: random(4, 7.5),
@@ -37,23 +35,25 @@ const particles = computed<Particle[]>(() =>
 </script>
 
 <template>
-    <div class="emoji-shower" aria-hidden="true">
-        <span
-            v-for="(p, i) in particles"
-            :key="i"
-            class="emoji"
-            :style="{
-                left: `${p.left}vw`,
-                fontSize: `${p.size}px`,
-                animationDelay: `${p.delay}s`,
-                animationDuration: `${p.duration}s`,
-                '--rotate-start': `${p.rotateStart}deg`,
-                '--rotate-end': `${p.rotateEnd}deg`,
-                '--drift': `${p.drift}vw`
-            }">
-            {{ p.char }}
-        </span>
-    </div>
+    <ClientOnly>
+        <div class="emoji-shower" aria-hidden="true">
+            <span
+                v-for="(p, i) in particles"
+                :key="i"
+                class="emoji"
+                :style="{
+                    left: `${p.left}vw`,
+                    fontSize: `${p.size}px`,
+                    animationDelay: `${p.delay}s`,
+                    animationDuration: `${p.duration}s`,
+                    '--rotate-start': `${p.rotateStart}deg`,
+                    '--rotate-end': `${p.rotateEnd}deg`,
+                    '--drift': `${p.drift}vw`
+                }">
+                {{ p.char }}
+            </span>
+        </div>
+    </ClientOnly>
 </template>
 
 <style scoped>
@@ -62,7 +62,7 @@ const particles = computed<Particle[]>(() =>
     inset: 0;
     pointer-events: none;
     overflow: hidden;
-    z-index: 1;
+    z-index: 0;
 }
 
 .emoji {

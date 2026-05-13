@@ -8,8 +8,8 @@
 Source code of the frontend used on [IsHetPatat.nl](https://ishetpatat.nl) and [IsHetFriet.nl](https://ishetfriet.nl).
 
 ## Stack
-- [Vue 3](https://vuejs.org/) with `<script setup>` and TypeScript
-- [Vite](https://vite.dev/) for development and bundling
+- [Nuxt 4](https://nuxt.com/) with `<script setup>` and TypeScript
+- [Nitro](https://nitro.unjs.io/) on the `cloudflare_module` preset
 - [motion-v](https://motion.dev/) for animations
 - [Lucide](https://lucide.dev/) for icons
 - [Cloudflare Workers](https://workers.cloudflare.com/) with static assets for hosting
@@ -25,7 +25,7 @@ The dev server runs on [http://localhost:8080](http://localhost:8080).
 
 ## Production
 ```sh
-bun run build       # type-check + build to dist/
+bun run build       # Nuxt build to .output/
 bun run preview     # run the built site through wrangler locally
 bun run deploy      # build and deploy to Cloudflare Workers
 ```

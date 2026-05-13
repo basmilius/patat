@@ -80,13 +80,14 @@ function generateBlobPath(seed: number, points: number = 10, baseRadius: number 
     }
 
     const smoothness = 0.34;
-    const path: string[] = [`M${pts[0].x.toFixed(1)},${pts[0].y.toFixed(1)}`];
+    const first = pts[0]!;
+    const path: string[] = [`M${first.x.toFixed(1)},${first.y.toFixed(1)}`];
 
     for (let i = 0; i < points; i++) {
-        const p0 = pts[(i - 1 + points) % points];
-        const p1 = pts[i];
-        const p2 = pts[(i + 1) % points];
-        const p3 = pts[(i + 2) % points];
+        const p0 = pts[(i - 1 + points) % points]!;
+        const p1 = pts[i]!;
+        const p2 = pts[(i + 1) % points]!;
+        const p3 = pts[(i + 2) % points]!;
 
         const c1x = p1.x + (p2.x - p0.x) * smoothness;
         const c1y = p1.y + (p2.y - p0.y) * smoothness;

@@ -1,20 +1,21 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref } from "vue";
 import { AnimatePresence } from "motion-v";
-import CartoonSplats from "@/components/CartoonSplats.vue";
-import Container from "@/components/Container.vue";
-import Doodles from "@/components/Doodles.vue";
-import EmojiShower from "@/components/EmojiShower.vue";
-import PatatMarquee from "@/components/PatatMarquee.vue";
-import SaltGrains from "@/components/SaltGrains.vue";
-import StageOne from "@/components/StageOne.vue";
-import StageTwo from "@/components/StageTwo.vue";
-import StageThree from "@/components/StageThree.vue";
 
 const stage = ref(1);
 
+const { count, increment } = useCount();
+
+const { data: initialCount } = await useAsyncData("count-initial", () =>
+    $fetch<{ count: number }>("/api/count")
+);
+
+if (initialCount.value) {
+    count.value = initialCount.value.count;
+}
+
 const onButtonClick = async () => {
     stage.value = 2;
+    increment();
 
     await new Promise(resolve => setTimeout(resolve, 8000));
 
@@ -29,7 +30,7 @@ const KONAMI = [
 
 const konamiActive = ref(false);
 let konamiIndex = 0;
-let konamiTimer: number | undefined;
+let konamiTimer: ReturnType<typeof setTimeout> | undefined;
 
 const onKeyDown = (e: KeyboardEvent) => {
     if (e.code === KONAMI[konamiIndex]) {
@@ -39,8 +40,10 @@ const onKeyDown = (e: KeyboardEvent) => {
             konamiActive.value = true;
             konamiIndex = 0;
 
-            window.clearTimeout(konamiTimer);
-            konamiTimer = window.setTimeout(() => {
+            if (konamiTimer) {
+                clearTimeout(konamiTimer);
+            }
+            konamiTimer = setTimeout(() => {
                 konamiActive.value = false;
             }, 6500);
         }
@@ -52,7 +55,9 @@ const onKeyDown = (e: KeyboardEvent) => {
 onMounted(() => window.addEventListener("keydown", onKeyDown));
 onBeforeUnmount(() => {
     window.removeEventListener("keydown", onKeyDown);
-    window.clearTimeout(konamiTimer);
+    if (konamiTimer) {
+        clearTimeout(konamiTimer);
+    }
 });
 </script>
 

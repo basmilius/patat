@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { Motion } from "motion-v";
 import { ArrowRightCircle } from "lucide-vue-next";
-import Button from "./Button.vue";
 
 defineEmits<{
     click: [];
 }>();
+
+const { count, formatted } = useCount();
 </script>
 
 <template>
@@ -61,6 +62,16 @@ defineEmits<{
                 label="Kom erachter"
                 @click="$emit('click')"/>
         </Motion>
+
+        <Motion
+            v-if="count > 0"
+            as="p"
+            class="count-line"
+            :initial="{ opacity: 0, y: 10 }"
+            :animate="{ opacity: 1, y: 0, transition: { delay: 0.55 } }"
+            :transition="{ type: 'tween', duration: 0.3 }">
+            Al <strong>{{ formatted }}</strong> keer aan de AI gevraagd
+        </Motion>
     </Motion>
 </template>
 
@@ -68,5 +79,28 @@ defineEmits<{
 .patat-trigger {
     cursor: pointer;
     user-select: none;
+}
+
+.count-line {
+    margin: 0;
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    line-height: 1.4;
+    opacity: 0.7;
+    text-transform: uppercase;
+}
+
+.count-line strong {
+    color: var(--text-prominent);
+    font-weight: 900;
+}
+
+@media (max-width: 575.98px) {
+    .count-line {
+        font-size: 13px;
+        letter-spacing: 1px;
+    }
 }
 </style>

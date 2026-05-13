@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { Motion } from "motion-v";
-import Sparkle from "./Sparkle.vue";
 
 interface Doodle {
     x: number;

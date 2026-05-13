@@ -24,6 +24,7 @@ body {
         rgba(240, 210, 144, 0.04) 22px,
         rgba(240, 210, 144, 0.04) 24px
     );
+    background-attachment: fixed;
     color: var(--text);
     font-family: proxima-soft, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     font-size: 18px;
@@ -77,6 +78,7 @@ img {
 
 .stage {
     position: relative;
+    z-index: 2;
     display: flex;
     flex-flow: column;
     align-items: center;
@@ -93,7 +95,7 @@ img {
 
 @media (max-width: 575.98px) {
     h1 {
-        font-size: 46px;
+        font-size: 50px;
         text-shadow:
             2px 0 0 #3a1a05,
             -2px 0 0 #3a1a05,
@@ -107,7 +109,7 @@ img {
     }
 
     p {
-        font-size: 18px;
+        font-size: 20px;
     }
 
     img {

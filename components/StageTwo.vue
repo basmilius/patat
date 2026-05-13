@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { onBeforeUnmount, ref } from "vue";
 import { AnimatePresence, Motion } from "motion-v";
 
 const messagePool = [
@@ -23,7 +22,7 @@ const shuffle = <T,>(arr: T[]): T[] => {
     const copy = [...arr];
     for (let i = copy.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        [copy[i], copy[j]] = [copy[j], copy[i]];
+        [copy[i], copy[j]] = [copy[j]!, copy[i]!];
     }
     return copy;
 };
@@ -37,14 +36,20 @@ const thinkingEmojis = [
     { src: "1f914", alt: "Nadenkend gezicht" },
     { src: "1f9d0", alt: "Monocle" }
 ];
-const thinkingEmoji = thinkingEmojis[Math.floor(Math.random() * thinkingEmojis.length)];
+const thinkingEmoji = thinkingEmojis[Math.floor(Math.random() * thinkingEmojis.length)]!;
 
-const interval = window.setInterval(() => {
-    index.value = (index.value + 1) % messages.length;
-}, 2000);
+let interval: ReturnType<typeof setInterval> | undefined;
+
+onMounted(() => {
+    interval = setInterval(() => {
+        index.value = (index.value + 1) % messages.length;
+    }, 2000);
+});
 
 onBeforeUnmount(() => {
-    window.clearInterval(interval);
+    if (interval) {
+        clearInterval(interval);
+    }
 });
 </script>
 

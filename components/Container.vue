@@ -1,6 +1,3 @@
-<script setup lang="ts">
-</script>
-
 <template>
     <div class="container">
         <slot/>
@@ -12,7 +9,7 @@
     position: relative;
     display: flex;
     padding: 36px 36px 80px;
-    height: 100dvh;
+    min-height: 100dvh;
     width: 100vw;
     align-items: center;
     justify-content: center;

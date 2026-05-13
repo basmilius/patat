@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { computed } from "vue";
-
 const props = withDefaults(defineProps<{
     count?: number;
 }>(), {
@@ -20,7 +18,7 @@ interface Grain {
 const COLORS = ["#ffffff", "#ffffff", "#ffffff", "#ffffff", "#f0d290", "#ecb365"];
 
 const random = (min: number, max: number) => Math.random() * (max - min) + min;
-const pick = <T,>(arr: readonly T[]): T => arr[Math.floor(Math.random() * arr.length)];
+const pick = <T,>(arr: readonly T[]): T => arr[Math.floor(Math.random() * arr.length)]!;
 
 const grains = computed<Grain[]>(() =>
     Array.from({ length: props.count }, () => ({
@@ -36,22 +34,24 @@ const grains = computed<Grain[]>(() =>
 </script>
 
 <template>
-    <div class="salt-grains" aria-hidden="true">
-        <span
-            v-for="(g, i) in grains"
-            :key="i"
-            class="grain"
-            :style="{
-                left: `${g.x}%`,
-                top: `${g.y}%`,
-                width: `${g.size}px`,
-                height: `${g.size}px`,
-                background: g.color,
-                '--opacity': g.opacity,
-                animationDelay: `${g.delay}s`,
-                animationDuration: `${g.duration}s`
-            }"/>
-    </div>
+    <ClientOnly>
+        <div class="salt-grains" aria-hidden="true">
+            <span
+                v-for="(g, i) in grains"
+                :key="i"
+                class="grain"
+                :style="{
+                    left: `${g.x}%`,
+                    top: `${g.y}%`,
+                    width: `${g.size}px`,
+                    height: `${g.size}px`,
+                    background: g.color,
+                    '--opacity': g.opacity,
+                    animationDelay: `${g.delay}s`,
+                    animationDuration: `${g.duration}s`
+                }"/>
+        </div>
+    </ClientOnly>
 </template>
 
 <style scoped>
