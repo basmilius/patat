@@ -5,12 +5,12 @@ const stage = ref(1);
 
 const { count, increment } = useCount();
 
-const { data: initialCount } = await useAsyncData("count-initial", () =>
-    $fetch<{ count: number }>("/api/count")
-);
-
-if (initialCount.value) {
-    count.value = initialCount.value.count;
+if (import.meta.server) {
+    const event = useRequestEvent();
+    if (event) {
+        const { getCount } = await import("../server/utils/counter");
+        count.value = await getCount(event);
+    }
 }
 
 const onButtonClick = async () => {
