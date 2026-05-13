@@ -39,7 +39,7 @@ export default defineNuxtConfig({
                 kv_namespaces: [
                     {
                         binding: "PATAT_STATS",
-                        id: "REPLACE_WITH_KV_NAMESPACE_ID"
+                        id: "02c2b2a789774440918cea4d349a494b"
                     }
                 ]
             }
